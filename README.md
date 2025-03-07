@@ -1,9 +1,26 @@
 # Customer Behavior Analytics System
 
-## Overview
-This project analyzes customer behavior patterns using BigBasket product data. While initially intended to include churn prediction, the project focuses on comprehensive product analytics and customer behavior insights due to dataset constraints.
+## Project Overview
+This project aims to analyze customer behavior patterns using BigBasket's product dataset. The primary focus is to derive insights into customer purchasing trends, product preferences, pricing impact, and discount influence on sales.
+
+While the initial plan included churn prediction, dataset constraints limited the availability of customer-specific transactional data. As a result, the project pivots towards comprehensive product analytics and behavioral insights, helping businesses understand consumer engagement, brand loyalty, and category-level demand.
+
+## Key Objectives
+
+🔹 Product Performance Analysis – Identifying high-performing products and categories based on rating, sales price, and discount trends.
+🔹 Customer Behavior Insights – Understanding how pricing, discounts, and brand influence purchase decisions.
+🔹 Sentiment & Review Analysis – Examining product ratings and descriptions to assess customer satisfaction levels.
+🔹 Pricing & Discount Impact – Analyzing how price differences and discounts affect customer preferences.
+🔹 Feature Engineering for Future Predictions – Preparing the dataset for potential predictive modeling by cleaning and structuring the data.
+
+## Technologies Used
+ Python (Pandas, NumPy, Scikit-Learn) – Data preprocessing, feature engineering, and exploratory data analysis (EDA).
+ Data Visualization (Matplotlib, Seaborn, Tableau ) – Graphical insights into customer behavior trends.
+ Machine Learning (K-Means clustering , XGBoost model) – implementation of customer segmentation and predictive modeling. ( Not fully perfected )
+
 
 ## Project Structure
+
 ``` bash
 Customer-Behavior-Churn-Prediction/
 ├── data/                         # Data-related files
@@ -40,11 +57,7 @@ Customer-Behavior-Churn-Prediction/
 └── .gitignore                    # Ignore unnecessary files in Git
 
 
-
-
 ```
-
-
 
 ## Features
 - **Data Preprocessing**: Handles missing values, duplicates, and data type conversions
@@ -101,8 +114,9 @@ python src/etl/preprocessing_data.py
 ## Future Improvements
 - Implementation of customer segmentation
 - Addition of time-series analysis
-- Integration with machine learning models for product recommendations
 - Enhanced visualization dashboard
+- Recommendation System – Suggesting products based on past behavior.
+
 
 ## Contributing
 Feel free to fork the project and submit pull requests. For major changes, please open an issue first to discuss the proposed changes.
