@@ -7,11 +7,11 @@ While the initial plan included churn prediction, dataset constraints limited th
 
 ## Key Objectives
 
-🔹 Product Performance Analysis – Identifying high-performing products and categories based on rating, sales price, and discount trends.
-🔹 Customer Behavior Insights – Understanding how pricing, discounts, and brand influence purchase decisions.
-🔹 Sentiment & Review Analysis – Examining product ratings and descriptions to assess customer satisfaction levels.
-🔹 Pricing & Discount Impact – Analyzing how price differences and discounts affect customer preferences.
-🔹 Feature Engineering for Future Predictions – Preparing the dataset for potential predictive modeling by cleaning and structuring the data.
+ 🔹 Product Performance Analysis – Identifying high-performing products and categories based on rating, sales price, and discount trends.
+ 🔹 Customer Behavior Insights – Understanding how pricing, discounts, and brand influence purchase decisions.
+ 🔹 Sentiment & Review Analysis – Examining product ratings and descriptions to assess customer satisfaction levels.
+ 🔹 Pricing & Discount Impact – Analyzing how price differences and discounts affect customer preferences.
+ 🔹 Feature Engineering for Future Predictions – Preparing the dataset for potential predictive modeling by cleaning and structuring the data.
 
 ## Technologies Used
  Python (Pandas, NumPy, Scikit-Learn) – Data preprocessing, feature engineering, and exploratory data analysis (EDA).
@@ -53,7 +53,7 @@ Customer-Behavior-Churn-Prediction/
 ├── requirements.txt              # List of dependencies for the project
 ├── config.yaml                   # Configuration file (e.g., database credentials, API keys)
 ├── README.md                     # Project overview and setup instructions
-├── LICENSE                       # Project license (e.g., MIT, Apache)
+├── LICENSE                       # Project license
 └── .gitignore                    # Ignore unnecessary files in Git
 
 
@@ -85,11 +85,6 @@ The analysis uses the BigBasket products dataset which includes:
 - Product descriptions
 - Brand information
 
-## Technical Stack
-- Python 3.12
-- Pandas for data manipulation
-- NumPy for numerical operations
-- Seaborn/Matplotlib for visualization
 
 ## Getting Started
 
@@ -123,3 +118,11 @@ Feel free to fork the project and submit pull requests. For major changes, pleas
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Contact
+[albinmanuvel31@gmail.com]
+
+Linkedin - [www.linkedin.com/in/albin-manuvel-6607a9221]
+
+
+
