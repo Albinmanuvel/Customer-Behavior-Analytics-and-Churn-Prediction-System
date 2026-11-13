@@ -17,3 +17,6 @@ venv/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Generated data (recreate with src/etl/preprocessing_data.py or the notebooks)
+data/processed/

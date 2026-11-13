@@ -1,128 +1,62 @@
-# Customer Behavior Analytics System
+# Customer Behavior Analytics: BigBasket Product Data
 
-## Project Overview
-This project aims to analyze customer behavior patterns using BigBasket's product dataset. The primary focus is to derive insights into customer purchasing trends, product preferences, pricing impact, and discount influence on sales.
+Exploratory analysis of a BigBasket product listing (27,555 products, 10 columns) to see how pricing, discounts, brands and categories relate to customer ratings.
 
-While the initial plan included churn prediction, dataset constraints limited the availability of customer-specific transactional data. As a result, the project pivots towards comprehensive product analytics and behavioral insights, helping businesses understand consumer engagement, brand loyalty, and category-level demand.
+## Scope note
 
-## Key Objectives
+This repo started as a customer churn project, but the dataset only has product-level information (price, category, brand, rating, description). There are no customer IDs or transactions, so churn prediction and RFM analysis are not possible with this data. The project is an honest product and pricing EDA, and the churn and segmentation ideas are listed under "Next steps".
 
- 🔹 Product Performance Analysis – Identifying high-performing products and categories based on rating, sales price, and discount trends.
- 🔹 Customer Behavior Insights – Understanding how pricing, discounts, and brand influence purchase decisions.
- 🔹 Sentiment & Review Analysis – Examining product ratings and descriptions to assess customer satisfaction levels.
- 🔹 Pricing & Discount Impact – Analyzing how price differences and discounts affect customer preferences.
- 🔹 Feature Engineering for Future Predictions – Preparing the dataset for potential predictive modeling by cleaning and structuring the data.
-
-## Technologies Used
- Python (Pandas, NumPy, Scikit-Learn) – Data preprocessing, feature engineering, and exploratory data analysis (EDA).
- Data Visualization (Matplotlib, Seaborn, Tableau ) – Graphical insights into customer behavior trends.
- Machine Learning (K-Means clustering , XGBoost model) – implementation of customer segmentation and predictive modeling. ( Not fully perfected )
-
-
-## Project Structure
-
-``` bash
-Customer-Behavior-Churn-Prediction/
-├── data/                         # Data-related files
-│   ├── raw/                      # Raw, unprocessed datasets
-│   ├── processed/                # Cleaned and transformed datasets
-│   ├── external/                 # additional datasets for enrichment
-│   ├── outputs/                  # Model predictions, clustering results, etc.
-│   └── README.md                 # Explanation of the data folder contents
-├── notebooks/                    # Jupyter notebooks for EDA, modeling, etc.
-│   ├── 01-data-exploration.ipynb # Data exploration and visualization
-│   ├── 02-rfm-analysis.ipynb     # RFM analysis and clustering
-│   └── README.md                 # Explanation of the notebooks folder
-├── src/                          # Source code for the project
-│   ├── etl/                      # ETL pipeline scripts
-│   │   ├── preprocessing_data.py # Data transformation logic
-│   ├── analysis/                 # RFM and clustering code
-│   │   ├── rfm.py                # Functions for RFM analysis
-│   │   ├── clustering.py         # K-means or DBSCAN clustering
-│   ├── modeling/                 # Machine learning scripts
-│   │   ├── ML_model.py           # Code for prediction model
-│   │   ├── shap_analysis.py      # SHAP value generation
-│   ├── utils/                    # Helper functions and utilities
-│   │   ├── data_preprocessing.py # Data preprocessing utilities
-│   │   ├── visualizations.py     # Custom visualization scripts
-├── dashboards/                   # Tableau/Power BI dashboards or Streamlit app code
-│   ├── tableau/                  # Tableau workbook files
-│   └── README.md                 # Explanation of the dashboards folder
-├── tests/                        # Unit and integration tests
-│   ├── test_model.py             # Test churn prediction model
-├── requirements.txt              # List of dependencies for the project
-├── config.yaml                   # Configuration file (e.g., database credentials, API keys)
-├── README.md                     # Project overview and setup instructions
-├── LICENSE                       # Project license
-└── .gitignore                    # Ignore unnecessary files in Git
-
+## What is in the repo
 
 ```
+data/raw/bigbasket_products.csv    Raw product listing
+src/etl/preprocessing_data.py      Cleans the raw file and writes data/processed/
+notebooks/data-exploration.ipynb   Inspect, clean and save the dataset
+notebooks/Exploratory-Data-Analysis.ipynb   Plots, correlations, feature engineering
+requirements.txt
+```
 
-## Features
-- **Data Preprocessing**: Handles missing values, duplicates, and data type conversions
-- **Exploratory Data Analysis**: 
-  - Product pricing analysis
-  - Rating distribution
-  - Category-wise analysis
-  - Price-rating correlation studies
-- **Feature Engineering**:
-  - Price difference calculation
-  - Discount percentage analysis
-  - Rating normalization
+`data/processed/` is generated by the steps below and is git-ignored.
 
-## Key Insights
-- Product pricing patterns across different categories
-- Correlation between product ratings and prices
-- Discount impact analysis
-- Category-wise product distribution
-
-## Dataset
-The analysis uses the BigBasket products dataset which includes:
-- Product details (name, category, sub-category)
-- Pricing information (sale price, market price)
-- Customer ratings
-- Product descriptions
-- Brand information
-
-
-## Getting Started
-
-### Prerequisites
+## How to run
 
 ```bash
-python -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+
+python src/etl/preprocessing_data.py     # or run data-exploration.ipynb
+jupyter notebook notebooks/              # then run Exploratory-Data-Analysis.ipynb
 ```
 
-### Running the Analysis
-1. Data Preprocessing:
-```bash
-python src/etl/preprocessing_data.py
-```
+Run the script (or `data-exploration.ipynb`) first, because the EDA notebook reads the cleaned file it creates. Both notebooks work from either the repo root or the `notebooks/` folder, and I ran them top to bottom to check.
 
-2. Open the Jupyter notebooks in the `notebooks/` directory for detailed analysis:
-   - Start with `data-exploration.ipynb` for initial data understanding
-   - Move to `rfm-analysis.ipynb` for in-depth analysis
+## What the analysis does
 
-## Future Improvements
-- Implementation of customer segmentation
-- Addition of time-series analysis
-- Enhanced visualization dashboard
-- Recommendation System – Suggesting products based on past behavior.
+- Cleans the data: removes duplicates and rows with no product name or brand, fills missing descriptions and marks missing ratings
+- Looks at price distributions, category and sub-category counts, and the correlation between price and rating
+- Engineers two features: `price_difference` (market price minus sale price) and `discount_percentage`
 
+## Findings
 
-## Contributing
-Feel free to fork the project and submit pull requests. For major changes, please open an issue first to discuss the proposed changes.
+These numbers come from the enhanced dataset the EDA notebook produces (27,553 rows after cleaning).
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+- 11 categories, 90 sub-categories and about 2,300 brands. Beauty and Hygiene is the largest category (7,867 products), followed by Gourmet and World Food (4,690).
+- Sale price is heavily skewed: median 190, mean about 322, maximum 12,500.
+- About 69% of products have a rating (8,625 have none). The average rating of rated products is 3.94.
+- 55% of products are discounted. Among discounted products the average discount is about 21%, and it is about 12% across all products.
+- Price, market price and discount percentage all have only a very weak negative correlation with rating (between -0.07 and -0.10), so in this data price and discounts do not explain how customers rate a product.
+- Average discount is highest in Kitchen, Garden and Pets (about 22%) and Fruits and Vegetables (about 21%).
 
-## Contact
-[albinmanuvel31@gmail.com]
+## Limitations
 
-Linkedin - [www.linkedin.com/in/albin-manuvel-6607a9221]
+- Correlations are simple Pearson values on a skewed price column, so they are only a first look.
+- Ratings are missing for about 31% of products, and the cleaning treats them as "no rating" instead of modelling them.
+- No customer or time information, so this says nothing about purchase behaviour.
 
+## Next steps
 
-
+- Log-transform price and test rating drivers with a simple model (for example gradient boosting with SHAP)
+- Text features from the product description
+- Combine with a dataset that has customers and orders to try RFM segmentation and churn prediction
+- Add a small dashboard
